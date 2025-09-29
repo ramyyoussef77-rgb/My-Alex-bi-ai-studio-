@@ -1,0 +1,16 @@
+{
+  "short_name": "Alex Compass",
+  "name": "Alexandria Cultural Compass",
+  "description": "An AI-powered guide providing culturally nuanced and context-aware answers for tourists, locals, and expats in Alexandria, Egypt.",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#1B4965",
+  "background_color": "#F5E6CC"
+}

@@ -1,0 +1,223 @@
+/* ====================================
+   ENHANCED ANIMATIONS & DYNAMIC STYLES
+   ====================================*/
+
+/* CSS Custom Properties for Consistent Animation */
+:root {
+  --animation-fast: 0.15s;
+  --animation-normal: 0.3s;
+  --animation-slow: 0.6s;
+  --animation-very-slow: 1s;
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-cubic: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Enhanced Card Loading Animations */
+@keyframes cardSlideUp {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes cardFadeScale {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmerLoad {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(98, 182, 203, 0.2);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(98, 182, 203, 0.4);
+  }
+}
+
+/* Enhanced Card Styles with Animations */
+.historical-context-card,
+.user-input-area,
+.event-prediction-card,
+.suggestion-card,
+.discussion-starter-card,
+.safety-alert-card,
+.settings-card {
+  animation: cardSlideUp var(--animation-slow) var(--ease-out-quart);
+}
+
+/* Staggered Animation Delays */
+.user-input-area {
+  animation-delay: 0.1s;
+}
+
+.historical-context-card,
+.event-prediction-card:nth-child(1),
+.suggestion-card:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.event-prediction-card:nth-child(2),
+.suggestion-card:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.event-prediction-card:nth-child(3),
+.suggestion-card:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+
+/* Enhanced Hover Effects */
+.event-prediction-card:hover,
+.suggestion-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 10px 20px rgba(0, 0, 0, 0.05);
+  border-color: rgba(98, 182, 203, 0.3);
+}
+
+/* Shimmer/Skeleton Loading Effect */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #e0e7ff 25%,
+    #c7d2fe 50%,
+    #e0e7ff 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmerLoad 1.5s infinite;
+  border-radius: 6px;
+}
+.skeleton-text {
+  height: 1em;
+  margin-bottom: 0.5em;
+  border-radius: 4px;
+}
+.skeleton-text:last-child {
+  width: 80%;
+}
+
+
+/* Content Reveal Animation */
+.card-content {
+  animation: cardFadeScale var(--animation-normal) var(--ease-out-quart);
+  animation-delay: 0.2s;
+  animation-fill-mode: both;
+}
+
+/* Enhanced Button Animations */
+.button-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-ripple::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 50%;
+    transform: scale(1) translate(-50%,-50%);
+    transform-origin: 50% 50%;
+}
+
+.button-ripple:active::after {
+    animation: ripple 0.5s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0) translate(-50%,-50%);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(30) translate(-50%,-50%);
+    opacity: 0;
+  }
+}
+
+
+/* Enhanced Status Indicators */
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+}
+.status-dot.online {
+  background: #28a745;
+  animation: pulseOnline 2s infinite;
+}
+.status-dot.offline {
+  background: #dc3545;
+}
+
+@keyframes pulseOnline {
+  0% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+  }
+}
+
+/* Enhanced Emergency Alerts */
+@keyframes slideDownBounce {
+  0% {
+    transform: translateY(-100px) scale(0.95);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(10px) scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.alert {
+  animation: slideDownBounce var(--animation-slow) var(--ease-spring);
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+  }
+}

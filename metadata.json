@@ -1,0 +1,7 @@
+{
+  "name": "Copy of Alexandria Cultural Compass",
+  "description": "An AI-powered guide providing culturally nuanced and context-aware answers for tourists, locals, and expats in Alexandria, Egypt. It goes beyond simple translations to offer insights that respect local customs and perspectives.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
