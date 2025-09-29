@@ -10,6 +10,7 @@ import CompassView from './components/CompassView';
 import OfflineHistoricalBrowser from './components/OfflineHistoricalBrowser';
 import CommunityChatView from './components/CommunityChatView';
 import LoginView from './components/LoginView'; // Import the new LoginView
+import FloatingAssistantIcon from './components/FloatingAssistantIcon'; // Import the new icon
 import { useSettings } from './hooks/useSettings';
 import { offlineManager } from './store/store';
 import { RealTimeChatManager } from './services/chatManager';
@@ -105,6 +106,7 @@ const App: React.FC = () => {
           <Footer />
         </div>
       </main>
+      <FloatingAssistantIcon />
       <BottomNav currentView={view} setView={setView} />
     </div>
   );

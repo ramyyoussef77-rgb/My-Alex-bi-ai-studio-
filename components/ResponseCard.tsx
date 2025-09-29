@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { CulturalResponse } from '../types';
 import HistoricalEras from './HistoricalEras';
+import { useTextToSpeech } from '../hooks/useTextToSpeech';
+import SpeakerOnIcon from './icons/SpeakerOnIcon';
+import SpeakerOffIcon from './icons/SpeakerOffIcon';
 
 interface ResponseCardProps {
   response: CulturalResponse | null;
@@ -11,6 +14,25 @@ interface ResponseCardProps {
 }
 
 const ResponseCard: React.FC<ResponseCardProps> = ({ response, isLoading, error, isFromCache, onFollowUpClick }) => {
+  const { isSpeaking, speak, cancel } = useTextToSpeech();
+  const answerText = response?.answer || '';
+  
+  useEffect(() => {
+    // Automatically speak the new response, but not if it's from the cache
+    if (answerText && !isLoading && !isFromCache) {
+      speak(answerText);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [answerText, isLoading, isFromCache]); // Dependency on answerText ensures it re-triggers for new answers
+
+  const handleSpeakerClick = () => {
+    if (isSpeaking) {
+      cancel();
+    } else if (answerText) {
+      speak(answerText);
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="historical-context-card w-full bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-md border border-white/30">
@@ -58,7 +80,12 @@ const ResponseCard: React.FC<ResponseCardProps> = ({ response, isLoading, error,
 
   return (
     <div className="historical-context-card w-full bg-white/80 backdrop-blur-md p-8 rounded-lg shadow-lg border border-white/40">
-       <h2 className="text-2xl font-serif font-bold text-sea-blue mb-4">Compass Reading:</h2>
+       <div className="flex justify-between items-center mb-4">
+        <h2 className="text-2xl font-serif font-bold text-sea-blue">Compass Reading:</h2>
+        <button onClick={handleSpeakerClick} className="p-2 rounded-full hover:bg-light-blue transition-colors" aria-label={isSpeaking ? 'Stop reading' : 'Read aloud'}>
+          {isSpeaking ? <SpeakerOffIcon className="w-6 h-6 text-sea-blue" /> : <SpeakerOnIcon className="w-6 h-6 text-sea-blue" />}
+        </button>
+       </div>
        {isFromCache && (
           <div className="mb-4 p-3 bg-light-blue/50 border border-highlight rounded-md text-sm text-sea-blue" role="status">
             <p>You seem to be offline. Displaying a previously saved answer.</p>

@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'alexandria-compass-cache-v3'; // Incremented cache version
+const CACHE_NAME = 'alexandria-compass-cache-v4'; // Incremented cache version
 const urlsToCache = [
   '/',
   '/index.html',
@@ -11,8 +11,10 @@ const urlsToCache = [
   '/styles.css',
   // Hooks
   '/hooks/useSettings.ts',
+  '/hooks/useTextToSpeech.ts', // New TTS hook
   // New Services
   '/services/apiService.ts',
+  '/services/authService.ts', // New Auth service
   '/services/geminiService.ts',
   '/services/historicalContextService.ts',
   '/services/eventService.ts',
@@ -41,6 +43,8 @@ const urlsToCache = [
   '/components/SafetyNetView.tsx',
   '/components/SettingsView.tsx',
   '/components/ToggleSwitch.tsx',
+  '/components/LoginView.tsx', // New Login view
+  '/components/FloatingAssistantIcon.tsx', // New Floating Icon
   // Icons
   '/components/icons/BackIcon.tsx',
   '/components/icons/BellIcon.tsx',
@@ -58,6 +62,8 @@ const urlsToCache = [
   '/components/icons/TimeIcon.tsx',
   '/components/icons/TrendingIcon.tsx',
   '/components/icons/UsersIcon.tsx',
+  '/components/icons/SpeakerOnIcon.tsx', // New Speaker On icon
+  '/components/icons/SpeakerOffIcon.tsx', // New Speaker Off icon
   // CDNs (Note: Caching opaque responses from CDNs can be tricky)
   'https://cdn.tailwindcss.com'
 ];

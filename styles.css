@@ -13,6 +13,23 @@
   --ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
+/* New animation for the floating assistant icon */
+@keyframes float-bob {
+  0% {
+    transform: translateY(0px);
+    box-shadow: 0 10px 20px rgba(27, 73, 101, 0.15);
+  }
+  50% {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(27, 73, 101, 0.2);
+  }
+  100% {
+    transform: translateY(0px);
+    box-shadow: 0 10px 20px rgba(27, 73, 101, 0.15);
+  }
+}
+
+
 /* Enhanced Card Loading Animations */
 @keyframes cardSlideUp {
   0% {
